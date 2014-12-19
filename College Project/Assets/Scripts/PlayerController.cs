@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour {
 
 	public float playerSpeed = 5f * Input.GetAxis ("Horizontal");
 
+	float moveVertical = Input.GetAxis("Vertical");
+	float moveHorizontal = Input.GetAxis ("Horizontal");
+
 	void Awake() {
 		Debug.Log ("Player speed set");
 	}
@@ -15,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	/*void FixedUpdate() {
+	void FixedUpdate() {
 
 		// Detecting if W key is pressed
 		if (moveVertical == 1) {
@@ -32,5 +35,5 @@ public class PlayerController : MonoBehaviour {
 			transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
 		}
 
-	}*/
+	}
 }
