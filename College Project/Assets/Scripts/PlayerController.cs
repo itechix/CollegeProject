@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate() {
+	/*void FixedUpdate() {
 
 		// Detecting if W key is pressed
 		if (moveVertical == 1) {
@@ -32,5 +32,5 @@ public class PlayerController : MonoBehaviour {
 			transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
 		}
 
-	}
+	}*/
 }
