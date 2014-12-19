@@ -2,37 +2,34 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-
+	
+	
+	
 	void Awake() {
-		Debug.Log ("Player speed set");
 	}
-
+	
 	// Use this for initialization
 	void Start() {
-
+		
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate() {
-
-		float playerSpeed = 5f * Input.GetAxis ("Horizontal");
-
-		float moveVertical = Input.GetAxis("Vertical");
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-
-		Debug.Log ("Hori:"+moveHorizontal);
-		Debug.Log ("Vert:"+moveVertical);
 		
-		// Detecting if W key is pressed
-		if (moveVertical == 1) {
-			transform.Translate (Vector3.forward * playerSpeed * Time.deltaTime);
-		}
-		// Detecting is S key is pressed
-		if (moveVertical == -1) {
-			transform.Translate(-Vector3.forward * playerSpeed * Time.deltaTime);
-		}
+		// Creating floats to hold the speed of 
+		float playerSpeedHorizontal = 5f * Input.GetAxis ("Horizontal");
+		float playerSpeedVertical = 10f * Input.GetAxis ("Vertical");
+		float playerSpeedJump = 10f * Input.GetAxis ("Jump");
 		
-		transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
-
+		// Transform statements to move the player by the playerSpeed amount.
+		transform.Translate (Vector3.forward * playerSpeedVertical * Time.deltaTime);
+		transform.Translate (Vector3.right * playerSpeedHorizontal * Time.deltaTime);
+		
+		Vector3 playerJumpCheck = transform.TransformDirection (Vector3.down);
+		
+		if(Physics.Raycast(transform.position, playerJumpCheck, playerSpeedJump)) { 
+			transform.Translate (Vector3.up* playerSpeedJump * Time.deltaTime);
+			Debug.Log ("You can jump");
+		}
 	}
 }

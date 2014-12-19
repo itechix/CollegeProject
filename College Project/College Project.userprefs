@@ -2,8 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
+<<<<<<< HEAD
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="31" Column="26" />
+=======
       <File FileName="Assets\Scripts\PlayerController.cs" Line="35" Column="23" />
       <File FileName="Assets\Scripts\MouseLook.cs" Line="1" Column="1" />
+>>>>>>> 708bfa793733f2dad16dd2438aee6bf04741eeb2
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
