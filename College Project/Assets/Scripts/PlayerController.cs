@@ -46,11 +46,11 @@ public class PlayerController : MonoBehaviour {
 	/// </summary>
 	void playerJump() {
 
-		const float JumpForce = 100.0f;
+		const float JumpForce = 50.0f;
 
-		if(Physics.Raycast(rigidbody.position, Vector3.down, JumpForce)) {
+		if(Physics.Raycast(rigidbody.position, Vector3.down, collider.bounds.extents.y + 0.1f)) {
 			Debug.Log ("Can jump");
-			rigidbody.AddForce (Vector3.up * JumpForce);
+			rigidbody.AddForce (Vector3.up * JumpForce, ForceMode.VelocityChange);
 		}
 	}
 }
