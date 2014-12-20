@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour {
 
 		const float JumpForce = 100.0f;
 
-		rigidbody.AddForce (Vector3.up * JumpForce);
+		if(Physics.Raycast(rigidbody.position, Vector3.down, JumpForce)) {
+			Debug.Log ("Can jump");
+			rigidbody.AddForce (Vector3.up * JumpForce);
+		}
 	}
-
 }
