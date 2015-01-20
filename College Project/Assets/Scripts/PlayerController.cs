@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	
 	
 	void Awake() {
+
 	}
 	
 	// Use this for initialization
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButton("Jump"))
 		{
 			playerJump();
+			Debug.Log ("Can jump");
 		}
 		
 		//if(Physics.Raycast(transform.position, playerJumpCheck, playerSpeedJump)) { 
@@ -40,16 +42,15 @@ public class PlayerController : MonoBehaviour {
 		//	Debug.Log ("You can jump");
 		//}
 	}
-
-	/// <summary>
+	
 	/// Here we handle anything to do with the jump, including the raycast, any animations, and the force setting it's self.
-	/// </summary>
 	void playerJump() {
 
-		const float JumpForce = 50.0f;
+		const float JumpForce = 4.0f;
+		Debug.Log ("Should Jump");
 
 		if(Physics.Raycast(rigidbody.position, Vector3.down, collider.bounds.extents.y + 0.1f)) {
-			Debug.Log ("Can jump");
+		//	Debug.Log ("Can jump");
 			rigidbody.AddForce (Vector3.up * JumpForce, ForceMode.VelocityChange);
 		}
 	}
