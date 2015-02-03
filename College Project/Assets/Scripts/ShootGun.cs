@@ -13,7 +13,7 @@ public class ShootGun : MonoBehaviour {
 		{
 			Rigidbody rocketInstance;
 			rocketInstance = Instantiate(rocketPrefab, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
-			rocketInstance.AddForce(barrelEnd.forward * 2000);
+			rocketInstance.AddForce(barrelEnd.forward * 500);
 		}
 	}
 }

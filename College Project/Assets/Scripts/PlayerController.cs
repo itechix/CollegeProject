@@ -2,24 +2,13 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	
-	
-	
-	void Awake() {
 
-	}
-	
-	// Use this for initialization
-	void Start() {
-		
-	}
-	
 	// Update is called once per frame
 	void FixedUpdate() {
 		
 		// Creating floats to hold the speed of 
-		float playerSpeedHorizontal = 5f * Input.GetAxis ("Horizontal");
-		float playerSpeedVertical = 10f * Input.GetAxis ("Vertical");
+		float playerSpeedHorizontal = 4f * Input.GetAxis ("Horizontal");
+		float playerSpeedVertical = 4f * Input.GetAxis ("Vertical");
 
 
 
@@ -46,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 	/// Here we handle anything to do with the jump, including the raycast, any animations, and the force setting it's self.
 	void playerJump() {
 
-		const float JumpForce = 4.0f;
+		const float JumpForce = 1.0f;
 		Debug.Log ("Should Jump");
 
 		if(Physics.Raycast(rigidbody.position, Vector3.down, collider.bounds.extents.y + 0.1f)) {
