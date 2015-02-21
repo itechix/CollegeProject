@@ -6,39 +6,44 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate() {
 		
-		// Creating floats to hold the speed of 
-		float playerSpeedHorizontal = 4f * Input.GetAxis ("Horizontal");
-		float playerSpeedVertical = 4f * Input.GetAxis ("Vertical");
+		// Creating floats to hold the speed of the plater
+		float playerSpeedHorizontal = 0.1f * Input.GetAxis ("Horizontal");
+		float playerSpeedVertical = 0.1f * Input.GetAxis ("Vertical");
+		float playerMaxSpeed = 4f;
 
-
-
-		//float playerSpeedJump = 10f * Input.GetAxis ("Jump");
-		
 		// Transform statements to move the player by the playerSpeed amount.
-		transform.Translate (Vector3.forward * playerSpeedVertical * Time.deltaTime);
-		transform.Translate (Vector3.right * playerSpeedHorizontal * Time.deltaTime);
-		
-		//Vector3 playerJumpCheck = transform.TransformDirection (Vector3.down);
+		Vector3 velocity = transform.forward * playerSpeedVertical + transform.right * playerSpeedHorizontal;
+		velocity.Normalize();
+		velocity *= playerMaxSpeed;
+		velocity.y = rigidbody.velocity.y;
+		rigidbody.velocity = velocity;
 
+		//rigidbody.AddForce (transform.forward * playerSpeedVertical, ForceMode.VelocityChange);
+		//rigidbody.AddForce (transform.right * playerSpeedHorizontal, ForceMode.VelocityChange);
+
+		// Calling the playerJump function when the jump key is pressed
 		if (Input.GetButton("Jump"))
 		{
 			playerJump();
 			Debug.Log ("Can jump");
 		}
-		
-		//if(Physics.Raycast(transform.position, playerJumpCheck, playerSpeedJump)) { 
-		//	transform.Translate (Vector3.up* playerSpeedJump * Time.deltaTime);
-		//	Debug.Log ("You can jump");
-		//}
 	}
-	
+
 	/// Here we handle anything to do with the jump, including the raycast, any animations, and the force setting it's self.
 	void playerJump() {
 
-		const float JumpForce = 1.0f;
+		const float JumpForce = 2.0f;
 		Debug.Log ("Should Jump");
 
-		if(Physics.Raycast(rigidbody.position, Vector3.down, collider.bounds.extents.y + 0.1f)) {
+		Vector3 rayOrigin = transform.position;
+		rayOrigin.y += collider.bounds.extents.y; //move the ray origin up into the collider so that it won't begin in the ground / floor
+		float rayDistance = collider.bounds.extents.y + 0.1f;
+
+		Ray ray = new Ray ();
+		ray.origin = rayOrigin;
+		ray.direction = Vector3.down;
+
+		if(Physics.Raycast(ray, rayDistance, 1 << 9)) {
 		//	Debug.Log ("Can jump");
 			rigidbody.AddForce (Vector3.up * JumpForce, ForceMode.VelocityChange);
 		}

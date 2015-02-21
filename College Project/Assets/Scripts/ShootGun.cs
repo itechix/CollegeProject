@@ -5,15 +5,22 @@ public class ShootGun : MonoBehaviour {
 	
 	public Rigidbody rocketPrefab;
 	public Transform barrelEnd;
-		
-		
+
+	public int ammoCount = 30;
+
 	void Update ()
 	{
-		if(Input.GetButtonDown("Fire1"))
+		for(int i = 0; i < ammoCount; i++)
 		{
-			Rigidbody rocketInstance;
-			rocketInstance = Instantiate(rocketPrefab, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
-			rocketInstance.AddForce(barrelEnd.forward * 500);
+			if(Input.GetButtonDown("Fire1"))
+			{
+				ammoCount -= 1;
+				Debug.Log ("Ammo remaining: " + ammoCount);
+				Rigidbody rocketInstance;
+				rocketInstance = Instantiate(rocketPrefab, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
+				rocketInstance.AddForce(barrelEnd.forward * 1500);
+			}
 		}
+
 	}
 }
