@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CollisionBullet.cs" />
-     <Compile Include="Assets\Scripts\GunAmmo.cs" />
      <Compile Include="Assets\Scripts\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />

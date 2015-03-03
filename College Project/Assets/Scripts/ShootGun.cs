@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ShootGun : MonoBehaviour {
-	
-	public Rigidbody rocketPrefab;
-	public Transform barrelEnd;
+
+	public Text Ammo;
+	public GameObject endScreen;
 
 	public int ammoCount = 30;
 
@@ -14,12 +15,23 @@ public class ShootGun : MonoBehaviour {
 		{
 			if(Input.GetButtonDown("Fire1"))
 			{
+				Vector3 gunRayOrigin = transform.position;
+				float gunRayDistance = 50f;
+				
+				Ray gunRay = new Ray ();
+				gunRay.origin = gunRayOrigin;
+				gunRay.direction = Vector3.down;
+				
+				if(Physics.Raycast(gunRayOrigin, gunRay.direction, gunRayDistance)) {
+					Debug.Log("Bullet Hit");
+				}
 				ammoCount -= 1;
 				Debug.Log ("Ammo remaining: " + ammoCount);
-				Rigidbody rocketInstance;
-				rocketInstance = Instantiate(rocketPrefab, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
-				rocketInstance.AddForce(barrelEnd.forward * 1500);
+				Ammo.text = " " + ammoCount;
 			}
+		}
+		if(ammoCount == 0) {
+			endScreen.SetActive(true);
 		}
 
 	}
