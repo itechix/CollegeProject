@@ -40,8 +40,8 @@ public class PlayerController : MonoBehaviour {
 		Debug.Log ("Should Jump");
 
 		Vector3 rayOrigin = transform.position;
-		rayOrigin.y += collider.bounds.extents.y; //move the ray origin up into the collider so that it won't begin in the ground / floor
-		float rayDistance = collider.bounds.extents.y + 0.1f;
+		rayOrigin.y += GetComponent<Collider>().bounds.extents.y; //move the ray origin up into the collider so that it won't begin in the ground / floor
+		float rayDistance = GetComponent<Collider>().bounds.extents.y + 0.1f;
 
 		Ray ray = new Ray ();
 		ray.origin = rayOrigin;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 
 		if(Physics.Raycast(ray, rayDistance, 1 << 9)) {
 		//	Debug.Log ("Can jump");
-			rigidbody.AddForce (Vector3.up * JumpForce, ForceMode.VelocityChange);
+			GetComponent<Rigidbody>().AddForce (Vector3.up * JumpForce, ForceMode.VelocityChange);
 		}
 	}
 }
