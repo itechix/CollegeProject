@@ -10,7 +10,7 @@ public class Torch : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetButtonDown("Torch")) {
+		if (Input.GetButtonDown("Flashlight")) {
 			playerTorch.enabled = !playerTorch.enabled;
 		}
 	}
