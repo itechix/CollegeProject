@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class ShootGun : MonoBehaviour {
 	
-		
+
 	public Text aCounter;
 	public Text aClipCounter;
+	public GameObject bulletSpawn;
 	public GameObject aEmpty;
 	public GameObject aReload;
-	
+
+	public GameObject bulletHolePrefab;
+
 	int aClipCurrent = 0;
 
 	// Creating a list for the different clips for the piston weapon (and the ammo in each clip)
@@ -18,12 +21,16 @@ public class ShootGun : MonoBehaviour {
 
 	void Start()
 	{
-		aClipPistol.Add (8);
-		aClipPistol.Add (8);
-		aClipPistol.Add (8);
-		aClipPistol.Add (8);
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
 		Debug.Log (aClipPistol.Count);
 
+	}
+	void Update ()
+	{
+		gunFire();
 	}
 
 
@@ -31,7 +38,7 @@ public class ShootGun : MonoBehaviour {
 	{
 		int aClipCheck = aClipPistol.Count - aClipCurrent;
 		aClipCounter.text = "/ " + aClipCheck;
-		gunFire();
+
 
 	}
 	void gunFire()
@@ -48,47 +55,63 @@ public class ShootGun : MonoBehaviour {
 				aCounter.text = " " + aClipPistol[aClipCurrent];
 
 				// Raycasting for bullet projection against obstacles within the world (WIP)
-				Vector3 gunRayOrigin = transform.position;
+				Vector3 rayOrigin = transform.position;
 				float gunRayDistance = 50f;
 				
-				Ray gunRay = new Ray ();
-				gunRay.origin = gunRayOrigin;
-				gunRay.direction = Vector3.down;
+				Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+				//ray.origin = rayOrigin;
+				//ray.direction = Vector3.forward;
 
+				// Name what for the raycast collides with
+				RaycastHit hit;
 				// The actual raycast
-				if(Physics.Raycast(gunRayOrigin, gunRay.direction, gunRayDistance)) {
+				if(Physics.Raycast(ray, out hit, 1 << 8)) {
 					Debug.Log("Bullet Hit");
-				}
+
+
+					// The point of contact with the model is given by the hit.point (to not cause z-fighting issues with layering)
+					Vector3 bulletHolePosition = hit.point + hit.normal * 0.01f;
+					// Rotation to match where it hits (between the quad vector forward axis and the hit normal)
+					Quaternion bulletHoleRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal);
+					GameObject hole = (GameObject)GameObject.Instantiate(bulletHolePrefab, bulletHolePosition, bulletHoleRotation);
+				}                                                         	                                                         
 			}
+
 			if(aClipPistol[aClipCurrent] == 0)
 			{
+				//Debug.Log ("Reload");
 				// Activating the reload notification on the interface
 				aReload.SetActive(true);
 				gunReload();
+
+				//aClipCurrent += 1;
 			}
 			
 		}
 	}
 	void gunReload()
 	{
-		Debug.Log ("Reload check");
-		if (aClipCurrent <= 3)
+		Debug.Log("Reload function check");
+		if (Input.GetButtonDown("Reload"))
 		{
-			// THIS does not work atm for some reason?
-			if (Input.GetButtonDown ("Reload"))
-			{
-				// Deactivating the reload notification on the interface
-				aReload.SetActive(false);
-				// Incrementing the aClipCurrent value by 1 so the current clip "should" progress one along? idk
-				aClipCurrent += 1;
-			}
-		}
-		else 
-		{
-			// Deactivating the reload notification and activating the out of ammo notification on the interface
+			Debug.Log("Reload Button Check");
+
+			// Deactivating the reload notification on the interface
 			aReload.SetActive(false);
-			aEmpty.SetActive (true);
+			// Incrementing the aClipCurrent value by 1 so the current clip "should" progress one along? idk
+			aClipCurrent += 1;
 		}
+
+			// Deactivating the reload notification and activating the out of ammo notification on the interface
+//			aReload.SetActive(false);
+//			aEmpty.SetActive (true);
+
 	}
+
+	void gunDamage()
+	{
+		
+	}
+
 
 }

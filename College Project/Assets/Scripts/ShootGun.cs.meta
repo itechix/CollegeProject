@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: f7733839c8e98564c96556f8cb7e3c28
-timeCreated: 1425487170
+timeCreated: 1427479605
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - aCounter: {instanceID: 0}
+  - aClipCounter: {instanceID: 0}
+  - bulletSpawn: {instanceID: 0}
+  - aEmpty: {instanceID: 0}
+  - aReload: {instanceID: 0}
+  - bulletHolePrefab: {fileID: 114176, guid: 53412654a7679584caca95886dbc46a2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 		transform.Translate (Vector3.forward * playerSpeedVertical * Time.deltaTime);
 		transform.Translate (Vector3.right * playerSpeedHorizontal * Time.deltaTime);
 
+
+
 		// Calling the playerJump function when the jump key is pressed
 		if (Input.GetButton("Jump"))
 		{
