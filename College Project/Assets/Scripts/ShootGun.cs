@@ -48,6 +48,45 @@ public class ShootGun : MonoBehaviour {
 		aClipPistol.Add (12);
 	}
 
+	/// <summary>
+	/// Replenishes the pistol ammo.
+	/// </summary>
+	public void ReplenishPistolAmmo()
+	{
+		/* Turns out C# has some bizzaro definition of the foreach loop that prevents
+		   the value from being modified. It's passed by reference but read-only.
+
+		   So, there are a few different ways to accompish what we want to do.
+		   This is the closest to our original foreach loop (it basically is a foreach loop)
+		   and is the preffered method. It's fastest and most reliable. */
+
+		/* P.S. Whoever's doing the modeling and skinning, epic work! */
+
+		// We need to make sure the list isn't empty or it'll break.
+		if (aClipPistol.Count < 1) // This is a type of shorthand if statement.
+			return;                // If you only have one statement to execute you can omit the curly braces.
+
+		// Now we loop through all the values.
+		for (int i = 0; i < aClipPistol.Count - 1; i++) {
+			aClipPistol[i] = 12;
+		}
+	}
+
+	/// <summary>
+	/// Replenishes the pistol ammo.
+	/// </summary>
+	public void ReplenishPistolAmmoAlt()
+	{
+		/* Second way of doing it, just gets rid of everything and starts over
+		 * This has a potential to go wrong with null reference exceptions and shouldn't really be used. */
+		
+		// Wipe the list
+		aClipPistol.Clear ();
+		
+		// Re-initalize it.
+		gunInitialisation ();
+	}
+
 	void gunFire()
 	{
 		if(Input.GetButtonDown("Fire1"))

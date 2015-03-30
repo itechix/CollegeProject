@@ -29,15 +29,18 @@ public class AmmoPickup : MonoBehaviour {
 
 	void gunReinitialisation() 
 	{
+		// Debug log.
 		Debug.Log ("Ammo Pickup");
-		foreach (int clip in gunScript.aClipPistol) {
-			Debug.Log (gunScript.aClipPistol[clip]);
-			gunScript.aClipPistol[clip] = 12;
-			//clip = 12;
-			//Debug.Log (clip);
 
+		// Perform the replenishment. It makes more sense for this to be a function call instead of doing the work here.
+		gunScript.ReplenishPistolAmmo ();
+
+		// Debug to confirm it worked.
+		int temp_clipdebugvar = 0;
+		foreach (var clip in gunScript.aClipPistol) {
+			Debug.Log ("Clip[" + temp_clipdebugvar + "]: "+clip);	
+			temp_clipdebugvar++;
 		}
 		//gunScript.aClipPistol [0] = 12;
-
 	}
 }
