@@ -21,16 +21,14 @@ public class ShootGun : MonoBehaviour {
 
 	void Start()
 	{
-		aClipPistol.Add (12);
-		aClipPistol.Add (12);
-		aClipPistol.Add (12);
-		aClipPistol.Add (12);
+		gunInitialisation ();
 		Debug.Log (aClipPistol.Count);
 
 	}
 	void Update ()
 	{
 		gunFire();
+		aCounter.text = " " + aClipPistol[aClipCurrent];
 	}
 
 
@@ -41,6 +39,15 @@ public class ShootGun : MonoBehaviour {
 
 
 	}
+
+	void gunInitialisation()
+	{
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
+		aClipPistol.Add (12);
+	}
+
 	void gunFire()
 	{
 		if(Input.GetButtonDown("Fire1"))
@@ -52,20 +59,19 @@ public class ShootGun : MonoBehaviour {
 
 				// Debug message for counting the ammo left
 				Debug.Log ("Ammo remaining: " + aClipPistol[aClipCurrent]);
-				aCounter.text = " " + aClipPistol[aClipCurrent];
+				//aCounter.text = " " + aClipPistol[aClipCurrent];
 
 				// Raycasting for bullet projection against obstacles within the world (WIP)
-				Vector3 rayOrigin = transform.position;
 				float gunRayDistance = 50f;
 				
 				Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-				//ray.origin = rayOrigin;
-				//ray.direction = Vector3.forward;
 
-				// Name what for the raycast collides with
+				// Name what for the raycast collides with (used to reference the target point)
 				RaycastHit hit;
+
+
 				// The actual raycast
-				if(Physics.Raycast(ray, out hit, 1 << 8)) {
+				if(Physics.Raycast(ray, out hit, gunRayDistance, 1 << 8)) {
 					Debug.Log("Bullet Hit");
 
 
