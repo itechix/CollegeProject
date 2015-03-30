@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class AmmoPickup : MonoBehaviour {
@@ -22,7 +23,7 @@ public class AmmoPickup : MonoBehaviour {
 		if (pickUp.CompareTag("Player"))
 		{
 			Destroy (this.gameObject);
-			Debug.Log ("Collided");
+			Debug.Log ("Collided Ammo Pack");
 			gunReinitialisation();
 		}
 	}
@@ -30,17 +31,16 @@ public class AmmoPickup : MonoBehaviour {
 	void gunReinitialisation() 
 	{
 		// Debug log.
-		Debug.Log ("Ammo Pickup");
+		Debug.Log ("Picked up Ammo");
 
-		// Perform the replenishment. It makes more sense for this to be a function call instead of doing the work here.
+		// Perform the replenish function in the ShootGun script, to avoid having to reference it all here which over-complicates things.
 		gunScript.ReplenishPistolAmmo ();
 
-		// Debug to confirm it worked.
+		// Debug to confirm it worked the reinitialisation worked and prints the updated value of each clip.
 		int temp_clipdebugvar = 0;
 		foreach (var clip in gunScript.aClipPistol) {
-			Debug.Log ("Clip[" + temp_clipdebugvar + "]: "+clip);	
+			Debug.Log ("Clip[" + temp_clipdebugvar + "]: " + clip);	
 			temp_clipdebugvar++;
 		}
-		//gunScript.aClipPistol [0] = 12;
 	}
 }
