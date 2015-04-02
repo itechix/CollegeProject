@@ -18,7 +18,7 @@ public class HealthPickup : MonoBehaviour {
 	void OnTriggerEnter(Collider pickUp) {
 		if (pickUp.CompareTag("Player"))
 		{
-			Destroy (this.gameObject);
+			gameObject.SetActive(false);
 			Debug.Log ("Collided Health Pack");
 			HealthReinitialisation();
 		}

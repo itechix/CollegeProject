@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class AmmoPickup : MonoBehaviour {
@@ -22,7 +21,7 @@ public class AmmoPickup : MonoBehaviour {
 	void OnTriggerEnter(Collider pickUp) {
 		if (pickUp.CompareTag("Player"))
 		{
-			Destroy (this.gameObject);
+			gameObject.SetActive(false);
 			Debug.Log ("Collided Ammo Pack");
 			gunReinitialisation();
 		}
