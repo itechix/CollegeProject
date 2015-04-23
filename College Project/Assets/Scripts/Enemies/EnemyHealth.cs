@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour {
 
 	public float enemyHealth = 100.0f;
-	public Text sCounter;
 	public int playerScore = 0;
+	public Text sCounter;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
