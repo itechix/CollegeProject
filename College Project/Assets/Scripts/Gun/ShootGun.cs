@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class ShootGun : MonoBehaviour {
 
+	public EnemyHealth enemyHealth;
+	public ScoreboardDisplay scoreboardDisplay;
+
 	public Text aCounter;
 	public Text aClipCounter;
+
 	public GameObject bulletSpawn;
 	public GameObject aEmpty;
 	public GameObject aReload;
@@ -62,7 +66,7 @@ public class ShootGun : MonoBehaviour {
 		aReload.SetActive(false);
 	}
 
-	void gunFire()
+	public void gunFire(GameObject hitPoint)
 	{
 		if(Input.GetButtonDown("Fire1"))
 		{
@@ -90,14 +94,20 @@ public class ShootGun : MonoBehaviour {
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Head".
 					if (hit.transform.CompareTag("Enemy_Head")) {
 						Debug.Log ("Headshot!");
+						hitPoint = hit.collider.gameObject;
+						//enemyHealth.enemyShotHead();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Torso".
 					if (hit.transform.CompareTag("Enemy_Torso")) {
 						Debug.Log ("Body-shot!");
+						hitPoint = hit.collider.gameObject;
+						//enemyHealth.enemyShotTorso();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Limb".
 					if (hit.transform.CompareTag("Enemy_Limb")) {
 						Debug.Log ("Limb-shot!");
+						hitPoint = hit.collider.gameObject;
+						//enemyHealth.enemyShotLimb();
 					}
 
 					// The point of contact with the model is given by the hit.point (to not cause z-fighting issues with layering)
