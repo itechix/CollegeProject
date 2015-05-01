@@ -26,7 +26,7 @@ public class ScoreboardDisplay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int[] humanScores = new int[] {20, 5, 0, 0, 0};
+
 	}
 	
 	// Update is called once per frame

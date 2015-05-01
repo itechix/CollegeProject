@@ -66,7 +66,7 @@ public class ShootGun : MonoBehaviour {
 		aReload.SetActive(false);
 	}
 
-	public void gunFire(GameObject hitPoint)
+	void gunFire()
 	{
 		if(Input.GetButtonDown("Fire1"))
 		{
@@ -86,27 +86,27 @@ public class ShootGun : MonoBehaviour {
 				
 				// Name what for the raycast collides with (used to reference the target point)
 				RaycastHit hit;
-				
+
 				// The actual raycast
-				if(Physics.Raycast(ray, out hit, gunRayDistance, 1 << 8) || Physics.Raycast(ray, out hit, gunRayDistance, 1 << 9)) {
+				if(Physics.Raycast(ray, out hit, gunRayDistance, 1 << 9) || Physics.Raycast(ray, out hit, gunRayDistance, 1 << 8)) {
 					Debug.Log("Bullet Hit");
 
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Head".
 					if (hit.transform.CompareTag("Enemy_Head")) {
 						Debug.Log ("Headshot!");
-						hitPoint = hit.collider.gameObject;
+						//hitPoint = hit.collider.gameObject;
 						//enemyHealth.enemyShotHead();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Torso".
 					if (hit.transform.CompareTag("Enemy_Torso")) {
 						Debug.Log ("Body-shot!");
-						hitPoint = hit.collider.gameObject;
+						//hitPoint = hit.collider.gameObject;
 						//enemyHealth.enemyShotTorso();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Limb".
 					if (hit.transform.CompareTag("Enemy_Limb")) {
 						Debug.Log ("Limb-shot!");
-						hitPoint = hit.collider.gameObject;
+						//hitPoint = hit.collider.gameObject;
 						//enemyHealth.enemyShotLimb();
 					}
 
