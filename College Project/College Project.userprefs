@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Gun\ShootGun.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\mainEnemyLife.cs">
     <Files>
+      <File FileName="Assets\Scripts\Enemies\mainEnemyLife.cs" Line="17" Column="2" />
       <File FileName="Assets\Scripts\Gun\ShootGun.cs" Line="87" Column="5" />
+      <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="22" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\TrackPlayer.cs" />
+     <Compile Include="Assets\Scripts\Enemies\mainEnemyLife.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Gun\ShootGun.cs" />
