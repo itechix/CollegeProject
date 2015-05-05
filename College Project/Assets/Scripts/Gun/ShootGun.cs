@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ShootGun : MonoBehaviour {
 
-	public EnemyHealth enemyHealth;
 	public ScoreboardDisplay scoreboardDisplay;
 
 	public Text aCounter;
+	public AudioClip soundGunShoot;
 	public Text aClipCounter;
 
 	public GameObject bulletSpawn;
@@ -19,11 +19,14 @@ public class ShootGun : MonoBehaviour {
 
 	int aClipCurrent = 0;
 
+	AudioSource source;
+
 	// Creating a list for the different clips for the piston weapon (and the ammo in each clip)
 	public List<int> aClipPistol = new List<int> ();
 
 	void Start()
 	{
+		source = GetComponent<AudioSource> ();
 		// Call the gunInitialisation function at the start when the script runs for the first time.
 		gunInitialisation ();
 		// Debug log
@@ -72,6 +75,8 @@ public class ShootGun : MonoBehaviour {
 		{
 			if(aClipPistol[aClipCurrent] > 0)
 			{
+				source.PlayOneShot(soundGunShoot, 0.5F);
+
 				// Reducing the ammo of the current clip by 1.
 				aClipPistol[aClipCurrent] -= 1;
 				
@@ -91,25 +96,28 @@ public class ShootGun : MonoBehaviour {
 				if(Physics.Raycast(ray, out hit, gunRayDistance, 1 << 9) || Physics.Raycast(ray, out hit, gunRayDistance, 1 << 8)) {
 					Debug.Log("Bullet Hit");
 
+					EnemyHealth enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
+
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Head".
-					if (hit.transform.CompareTag("Enemy_Head")) {
+					if (hit.collider.gameObject.CompareTag("Enemy_Head")) {
 						Debug.Log ("Headshot!");
 						//hitPoint = hit.collider.gameObject;
-						//enemyHealth.enemyShotHead();
+						enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
+						enHit.enemyShotHead();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Torso".
-					if (hit.transform.CompareTag("Enemy_Torso")) {
+					if (hit.collider.gameObject.CompareTag("Enemy_Torso")) {
 						Debug.Log ("Body-shot!");
 						//hitPoint = hit.collider.gameObject;
-						//enemyHealth.enemyShotTorso();
+						enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
+						enHit.enemyShotTorso();
 					}
 					// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Limb".
-					if (hit.transform.CompareTag("Enemy_Limb")) {
+					if (hit.collider.gameObject.CompareTag("Enemy_Limb")) {
 						Debug.Log ("Limb-shot!");
-						//hitPoint = hit.collider.gameObject;
-						//enemyHealth.enemyShotLimb();
+						enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
+						enHit.enemyShotLimb();
 					}
-
 					// The point of contact with the model is given by the hit.point (to not cause z-fighting issues with layering)
 					Vector3 bulletHolePosition = hit.point + hit.normal * 0.01f;
 					// Rotation to match where it hits (between the quad vector forward axis and the hit normal)

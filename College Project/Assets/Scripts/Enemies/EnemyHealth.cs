@@ -5,23 +5,15 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour {
 
 	public float enemyHealth = 100.0f;
-//	public PlayerScore playerScore;
 
 	// Use this for initialization
 	void Start () {
 
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		enemyDeath ();
 	}
-
-	public void enemyTakeDamage(int amount) {
-
-	}
-
-
 
 	public void enemyShotHead() {
 		enemyHealth -= 60f;
@@ -41,9 +33,7 @@ public class EnemyHealth : MonoBehaviour {
 	void enemyDeath() {
 		if (enemyHealth <= 0.0f) {
 			Debug.Log ("Enemy Killed");
-			Destroy(gameObject);
-//			playerScore.playerScoreCount += 1f;
+			gameObject.SetActive(false);
 		}
 	}
-
 }
