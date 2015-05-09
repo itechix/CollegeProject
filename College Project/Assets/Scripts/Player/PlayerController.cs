@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 		
 		// Creating floats to hold the speed of the plater
 		float playerSpeedHorizontal = 4f * Input.GetAxis ("Horizontal");
-		float playerSpeedVertical = 4f * Input.GetAxis ("Vertical");
+		float playerSpeedVertical = 6f * Input.GetAxis ("Vertical");
 
 		// Transform statements to move the player by the playerSpeed amount.
 		transform.Translate (Vector3.forward * playerSpeedVertical * Time.deltaTime);
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	//Here we handle anything to do with the jump, including the raycast, any animations, and the force setting it's self.
 	void playerJump() {
 
-    	const float JumpForce = 1.75f;
+    	const float JumpForce = 1f;
 		// Debug message for testing whether the function is being called.
 //    	Debug.Log ("Should Jump");
 

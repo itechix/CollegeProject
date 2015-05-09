@@ -46,12 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Enemies\AndroidShoot.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\TrackPlayer.cs" />
      <Compile Include="Assets\Scripts\Enemies\mainEnemyLife.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Gun\ShootGun.cs" />
+     <Compile Include="Assets\Scripts\Gun\aimSights.cs" />
+     <Compile Include="Assets\Scripts\Gun\changeWeapon.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\SpawnAmmoPickup.cs" />

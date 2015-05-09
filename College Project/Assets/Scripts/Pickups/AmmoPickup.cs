@@ -14,7 +14,7 @@ public class AmmoPickup : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Make the object rotate by the specified angle / amount.
-		transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
+		transform.Rotate (new Vector3 (10, 30, 45) * Time.deltaTime);
 
 	}
 
