@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrackPlayer : MonoBehaviour {
+public class trackEnemy : MonoBehaviour {
 
-	// Use this for initialization
 	public Transform target; 
-
+	
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame

@@ -42,12 +42,12 @@ public class ShootGun : MonoBehaviour {
 
 	void Update ()
 	{
-		if (changeWeapon.currentGun = changeWeapon.gunPistol) {
-			aCounter.text = " " + aClipPistol [aClipPistolCurrent];
+		if (changeWeapon.currentGun == changeWeapon.gunPistol) {
+			aCounter.text = " " + aClipPistol[aClipPistolCurrent];
 			int aClipPistolCheck = aClipPistol.Count - aClipPistolCurrent;
 			aClipCounter.text = "/ " + aClipPistolCheck;
 		}
-		if (changeWeapon.currentGun = changeWeapon.gunAssault) {
+		if (changeWeapon.currentGun == changeWeapon.gunAssault) {
 			aCounter.text = " " + aClipAssault [aClipAssaultCurrent];
 			int aClipAssaultCheck = aClipAssault.Count - aClipAssaultCurrent;
 			aClipCounter.text = "/ " + aClipAssaultCheck;

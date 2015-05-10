@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Enemies\mainEnemyLife.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\LightFlicker.cs" />
+     <Compile Include="Assets\Scripts\Game\ScoreboardDisplay.cs" />
      <Compile Include="Assets\Scripts\Gun\ShootGun.cs" />
      <Compile Include="Assets\Scripts\Gun\aimSights.cs" />
      <Compile Include="Assets\Scripts\Gun\changeWeapon.cs" />
@@ -63,8 +64,9 @@
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\Torch.cs" />
-     <Compile Include="Assets\Scripts\ReferenceManager.cs" />
-     <Compile Include="Assets\Scripts\ScoreboardDisplay.cs" />
+     <Compile Include="Assets\Scripts\allyHealth.cs" />
+     <Compile Include="Assets\Scripts\humanShoot.cs" />
+     <Compile Include="Assets\Scripts\trackEnemy.cs" />
      <None Include="Assets\Military_Pistol_01_Free_v2\Docs\Military_Pistol_Free_Unity_Info.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity 5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

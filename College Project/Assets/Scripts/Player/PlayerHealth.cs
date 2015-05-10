@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
-	public float playerHealth = 50f;
+	public float playerHealth = 100f;
 	public Text hCounter;
 
 	//public Text hCounter;
