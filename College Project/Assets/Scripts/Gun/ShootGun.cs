@@ -7,9 +7,12 @@ public class ShootGun : MonoBehaviour {
 
 	// COMMENT: Explain principles, choice reasons
 	// Explain variables, what they do, why they were made
-
-
+	
 	public ScoreboardDisplay scoreboardDisplay;
+
+	public lastShooter lastShot;
+
+	public GameObject player;
 
 	public Text aCounter;
 	public AudioClip soundGunShoot;
@@ -150,6 +153,7 @@ public class ShootGun : MonoBehaviour {
 				//hitPoint = hit.collider.gameObject;
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotHead();
+				lastShot.shotLastUpdate(player.gameObject.name);
 			}
 			// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Torso".
 			if (hit.collider.gameObject.CompareTag("Enemy_Torso")) {
@@ -157,12 +161,14 @@ public class ShootGun : MonoBehaviour {
 				//hitPoint = hit.collider.gameObject;
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotTorso();
+				lastShot.shotLastUpdate(player.gameObject.name);
 			}
 			// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Limb".
 			if (hit.collider.gameObject.CompareTag("Enemy_Limb")) {
 				Debug.Log ("Limb-shot!");
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotLimb();
+				lastShot.shotLastUpdate(player.gameObject.name);
 			}
 			// The point of contact with the model is given by the hit.point (to not cause z-fighting issues with layering)
 			Vector3 bulletHolePosition = hit.point + hit.normal * 0.01f;

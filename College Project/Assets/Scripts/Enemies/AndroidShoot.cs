@@ -6,16 +6,13 @@ public class AndroidShoot : MonoBehaviour {
 	public GameObject humanTarget;
 	public GameObject playerTarget;
 	public PlayerHealth playerHealth;
-	public allyHealth allyHealth;	
+	public allyHealth allyHealth;
+
+	public lastShooter lastShot;
 
 	float gunDelay = 0.75f;
 	bool isShooting = false;
-		
-		// Use this for initialization
-	void Start () {
-		
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		shootGun ();
@@ -27,19 +24,21 @@ public class AndroidShoot : MonoBehaviour {
 
 		Vector3 rayDirection = GetComponent<Rigidbody>().transform.forward;
 
-		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
+		if (Physics.Raycast (transform.position + transform.up * 1.5f, rayDirection, out hit)) {
 			Debug.Log("enemy shoot check");
-			Debug.DrawLine(transform.position, hit.point, Color.magenta, 2f);
+			Debug.DrawLine(transform.position + transform.up * 1.5f, hit.point, Color.yellow, 2f);
 
 			if (hit.collider.CompareTag("Player") && isShooting == false) {
 				isShooting = true;
 				StartCoroutine (enemyShootPlayer ());
-				Debug.DrawLine(transform.position, hit.point, Color.magenta, 2f);
+				Debug.DrawLine(transform.position + transform.up * 1.5f, hit.point, Color.red, 2f);
+				lastShot.shotLastUpdate(this.gameObject.name);
 			}
 			if(hit.collider.CompareTag ("Ally") && isShooting == false) {
 				isShooting = true;
 				StartCoroutine (enemyShootAlly ());
-				Debug.DrawLine(transform.position, hit.point, Color.black, 2f);
+				Debug.DrawLine(transform.position + transform.up * 1.5f, hit.point, Color.red, 2f);
+				lastShot.shotLastUpdate(this.gameObject.name);
 			}
 		}
 	}

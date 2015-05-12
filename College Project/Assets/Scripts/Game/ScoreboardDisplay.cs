@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class ScoreboardDisplay : MonoBehaviour {
 
 	public GameObject scoreboard;
+	public Callouts callouts;
+
+	public lastShooter lastShooter;
+
 	int[] humanScores = new int[5] {0, 0, 0, 0, 0};
 	int[] androidScores = new int[5] {0, 0, 0, 0, 0};
 
@@ -63,4 +67,57 @@ public class ScoreboardDisplay : MonoBehaviour {
 			scoreboard.SetActive(false);
 		}
 	}
+	public void scoreboardIncrease() {
+		// Humans
+
+		if (lastShooter.shotLast == "Human One (Player)") {
+			humanScores[0] += 1;
+			Debug.Log (lastShooter.shotLast + " " + humanScores[0]);
+			callouts.currentKills += 1;
+		}
+		if (lastShooter.shotLast == "Human Two") {
+			humanScores[1] += 1;
+			Debug.Log (lastShooter.shotLast + " " + humanScores[1]);
+		}
+		if (lastShooter.shotLast == "Human Three") {
+			humanScores[2] += 1;
+			Debug.Log (lastShooter.shotLast + " " + humanScores[2]);
+		}
+		if (lastShooter.shotLast == "Human Four") {
+			humanScores[3] += 1;
+			Debug.Log (lastShooter.shotLast + " " + humanScores[3]);
+		}
+		if (lastShooter.shotLast == "Human Five") {
+			humanScores[4] += 1;
+			Debug.Log (lastShooter.shotLast + " " + humanScores[4]);
+		}
+		
+		// Androids
+
+		if (lastShooter.shotLast == "Android One") {
+			androidScores[0] += 1;
+			Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
+		}
+		if (lastShooter.shotLast == "Android Two") {
+			androidScores[1] += 1;
+			Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
+		}
+		if (lastShooter.shotLast == "Android Three") {
+			androidScores[2] += 1;
+			Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
+		}
+		if (lastShooter.shotLast == "Android Four") {
+			androidScores[3] += 1;
+			Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
+		}
+		if (lastShooter.shotLast == "Android Five") {
+			androidScores[4] += 1;
+			Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
+		}
+
+
+
+
+	}
+
 }

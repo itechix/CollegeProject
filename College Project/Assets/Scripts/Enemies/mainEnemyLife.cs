@@ -5,13 +5,12 @@ public class mainEnemyLife : MonoBehaviour {
 
 	public float enemyHealth = 100.0f;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+	public lastShooter lastShooter;
+	public enemyRespawn enemyRespawn;
+	public ScoreboardDisplay scoreboardScore;
+
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		enemyDeath();
 	}
 
@@ -20,8 +19,11 @@ public class mainEnemyLife : MonoBehaviour {
 	}
 
 	public void enemyDeath() {
-		if (enemyHealth <= 0f) {
-			gameObject.SetActive(false);
+		if (enemyHealth <= 0.0f) {
+			Debug.Log(this.gameObject.name + " was killed by " + lastShooter.shotLast);
+			scoreboardScore.scoreboardIncrease();
+			enemyRespawn.respawnEnemy();
+			enemyHealth = 100.0f;
 		}
 	}
 }
