@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate (new Vector3 (10, 45, 30) * Time.deltaTime);
+		transform.Rotate (new Vector3 (0, 0, 45) * Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider pickUp) {

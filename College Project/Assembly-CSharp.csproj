@@ -50,19 +50,23 @@
      <Compile Include="Assets\Scripts\Allies\allyRespawn.cs" />
      <Compile Include="Assets\Scripts\Allies\humanShoot.cs" />
      <Compile Include="Assets\Scripts\Allies\trackEnemy.cs" />
-     <Compile Include="Assets\Scripts\Callouts.cs" />
      <Compile Include="Assets\Scripts\Enemies\AndroidShoot.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\TrackPlayer.cs" />
      <Compile Include="Assets\Scripts\Enemies\enemyRespawn.cs" />
      <Compile Include="Assets\Scripts\Enemies\mainEnemyLife.cs" />
+     <Compile Include="Assets\Scripts\Game\Callouts.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
+     <Compile Include="Assets\Scripts\Game\GameOver.cs" />
      <Compile Include="Assets\Scripts\Game\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Game\ScoreboardDisplay.cs" />
+     <Compile Include="Assets\Scripts\Game\lastShooter.cs" />
+     <Compile Include="Assets\Scripts\Game\matchTimer.cs" />
      <Compile Include="Assets\Scripts\Gun\ShootGun.cs" />
      <Compile Include="Assets\Scripts\Gun\aimSights.cs" />
      <Compile Include="Assets\Scripts\Gun\changeWeapon.cs" />
      <Compile Include="Assets\Scripts\Menu\ClickToLoadAsync.cs" />
+     <Compile Include="Assets\Scripts\Menu\loadAdditive.cs" />
      <Compile Include="Assets\Scripts\Menu\loadOnClick.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\HealthPickup.cs" />
@@ -71,9 +75,8 @@
      <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerRespawn.cs" />
      <Compile Include="Assets\Scripts\Player\Torch.cs" />
-     <Compile Include="Assets\Scripts\lastShooter.cs" />
-     <None Include="Assets\Military_Pistol_01_Free_v2\Docs\Military_Pistol_Free_Unity_Info.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity 5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

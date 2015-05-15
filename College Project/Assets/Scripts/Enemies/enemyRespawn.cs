@@ -5,6 +5,8 @@ public class enemyRespawn : MonoBehaviour {
 
 	public float respawnTime = 1f;
 	public GameObject enemy;
+	public AndroidShoot androidShoot;
+	public mainEnemyLife enemyHealth;
 
 	public void respawnEnemy() {
 		StartCoroutine (androidRespawn());
@@ -16,5 +18,7 @@ public class enemyRespawn : MonoBehaviour {
 		enemy.transform.position = this.transform.position;
 		enemy.SetActive (true);
 		Debug.Log (enemy.name + " has respawned.");
+		androidShoot.isShooting = false;
+		enemyHealth.isRespawning = false;
 	}
 }

@@ -11,7 +11,7 @@ public class AndroidShoot : MonoBehaviour {
 	public lastShooter lastShot;
 
 	float gunDelay = 0.75f;
-	bool isShooting = false;
+	public bool isShooting = false;
 
 	// Update is called once per frame
 	void Update () {

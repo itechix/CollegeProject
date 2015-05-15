@@ -21,7 +21,7 @@ public class SpawnAmmoPickup : MonoBehaviour {
 
 	IEnumerator	spawnAmmo() {
 		Debug.Log ("No Pickup");
-		yield return new WaitForSeconds (5f);
+		yield return new WaitForSeconds (30f);
 		Debug.Log ("Spawning new Ammo");
 		aPickup.gameObject.SetActive(true);
 		isRespawning = false;

@@ -9,6 +9,8 @@ public class mainEnemyLife : MonoBehaviour {
 	public enemyRespawn enemyRespawn;
 	public ScoreboardDisplay scoreboardScore;
 
+	public bool isRespawning;
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		enemyDeath();
@@ -19,7 +21,8 @@ public class mainEnemyLife : MonoBehaviour {
 	}
 
 	public void enemyDeath() {
-		if (enemyHealth <= 0.0f) {
+		if (enemyHealth <= 0.0f && isRespawning == false) {
+			isRespawning = true;
 			Debug.Log(this.gameObject.name + " was killed by " + lastShooter.shotLast);
 			scoreboardScore.scoreboardIncrease();
 			enemyRespawn.respawnEnemy();

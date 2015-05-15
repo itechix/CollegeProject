@@ -4,28 +4,38 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class ShootGun : MonoBehaviour {
-
-	// COMMENT: Explain principles, choice reasons
+	// TODO: 
+    //COMMENT: Explain principles, choice reasons
 	// Explain variables, what they do, why they were made
-	
-	public ScoreboardDisplay scoreboardDisplay;
 
+	// Declaring the references to external classes so that they can accessed from within this script as well as their contents.
+	public ScoreboardDisplay scoreboardDisplay;
+	public changeWeapon changeWeapon;
 	public lastShooter lastShot;
 
+	// Declaring the gameobject references for external objects wihin the scene. They're assigned references
+	public GameObject bulletHolePrefab;
 	public GameObject player;
 
-	public Text aCounter;
-	public AudioClip soundGunShoot;
+	// Declaring the text boxes that will be assigned via the inspector, to hold string values to display on the UI.
 	public Text aClipCounter;
+	public Text aCounter;
+
+	// Declaring the AudioClip containers for the sounds for the different pistols (referenced / attached in the inspector).
+	public AudioClip soundGunPistol;
+	public AudioClip soundGunAssault;
 
 	public GameObject bulletSpawn;
 	public GameObject aEmpty;
 	public GameObject aReload;
 
-	public changeWeapon changeWeapon;
+	public bool noAmmoPistol = false;
+	public bool noAmmoAssault = false;
 
-	public GameObject bulletHolePrefab;
+	public bool noClipPistol = false;
+	public bool noClipAssault = false;
 
+	// Initilising and declaring int variables to contain the current active clip of each weapon type so that it can be applied to the aClip lists (0 = 1).
 	int aClipPistolCurrent = 0;
 	int aClipAssaultCurrent = 0;
 
@@ -40,25 +50,36 @@ public class ShootGun : MonoBehaviour {
 		source = GetComponent<AudioSource> ();
 		// Call the gunInitialisation function at the start when the script runs for the first time.
 		gunInitialisation ();
-		// Debug log
 	}
 
 	void Update ()
 	{
 		if (changeWeapon.currentGun == changeWeapon.gunPistol) {
-			aCounter.text = " " + aClipPistol[aClipPistolCurrent];
-			int aClipPistolCheck = aClipPistol.Count - aClipPistolCurrent;
+			aCounter.text = "" + aClipPistol[aClipPistolCurrent];
+			int aClipPistolCheck = aClipPistol.Count - aClipPistolCurrent - 1;
 			aClipCounter.text = "/ " + aClipPistolCheck;
 		}
 		if (changeWeapon.currentGun == changeWeapon.gunAssault) {
-			aCounter.text = " " + aClipAssault [aClipAssaultCurrent];
-			int aClipAssaultCheck = aClipAssault.Count - aClipAssaultCurrent;
+			aCounter.text = "" + aClipAssault [aClipAssaultCurrent];
+			int aClipAssaultCheck = aClipAssault.Count - aClipAssaultCurrent - 1;
 			aClipCounter.text = "/ " + aClipAssaultCheck;
+		}
+		// check for no ammo at all
+		if (aClipPistolCurrent == 3 && noClipPistol == false) {
+			aEmpty.SetActive(true);
+			aReload.SetActive(false);
+			noClipPistol = true;
+		}
+		if (aClipAssaultCurrent == 1 && noClipAssault == false) {
+			aEmpty.SetActive(true);
+			aReload.SetActive(false);
+			noClipAssault = true;
 		}
 
 		if (Input.GetButtonDown ("Fire1")) {
-			gunAmmoCheck();
+			gunCheck();
 		}
+		gunAmmoCheck ();
 	}
 
 	// Function for initialising the guns and setting their starter ammo / clips.
@@ -75,12 +96,13 @@ public class ShootGun : MonoBehaviour {
 	}
 	
 	// Replenishes the pistol ammo
-	public void ReplenishPistolAmmo()
+	public void ReplenishAmmo()
 	{
 		// This checks to make sure the list isn't empty.
-		if (aClipPistol.Count < 1 || aClipAssault.Count < 1)
+		if (aClipPistol.Count < 1 || aClipAssault.Count < 1) {
+			Debug.Log ("can't make ammo");
 			return;                
-
+		}
 		// Interate through all of the values in the aClipPistol List.
 		for (int i = 0; i < aClipPistol.Count - 1; i++) {
 			// Set i to 12, which updates the value in the List.
@@ -91,13 +113,17 @@ public class ShootGun : MonoBehaviour {
 			// Set i to 12, which updates the value in the List.
 			aClipAssault[i] = 30;
 		}
+
+		aClipPistolCurrent = 0;
+		aClipAssaultCurrent = 0;
+
 		// Hide the Reload notification
 		aReload.SetActive(false);
+		aEmpty.SetActive (false);
 	}
 
-	void gunAmmoCheck()
-	{
-
+	void gunCheck() {
+		
 		if(changeWeapon.currentGun == changeWeapon.gunPistol && aClipPistol[aClipPistolCurrent] > 0) {
 			gunFire ();
 			// Reducing the ammo of the current clip by 1.
@@ -110,17 +136,15 @@ public class ShootGun : MonoBehaviour {
 			// ClipPistol is being used (say array, why array
 			aClipAssault[aClipAssaultCurrent] -= 1;
 		}
+	}
 
-		if(aClipPistol[aClipPistolCurrent] == 0)
-		{
-			//Debug.Log ("Reload");
+	void gunAmmoCheck() {
+		if(aClipPistol[aClipPistolCurrent] == 0 && noAmmoPistol == false && noClipPistol == false) {
 			// Activating the reload notification on the interface
 			aReload.SetActive(true);
 			gunReload();
 		}
-		if(aClipAssault[aClipAssaultCurrent] == 0)
-		{
-			//Debug.Log ("Reload");
+		if(aClipAssault[aClipAssaultCurrent] == 0 && noAmmoAssault == false && noClipAssault == false) {
 			// Activating the reload notification on the interface
 			aReload.SetActive(true);
 			gunReload();
@@ -128,11 +152,13 @@ public class ShootGun : MonoBehaviour {
 	}
 
 	void gunFire() {
-
-		source.PlayOneShot(soundGunShoot, 0.5F);
 	
-		// Debug message for counting the ammo left
-		Debug.Log ("Ammo remaining: " + aClipPistol[aClipPistolCurrent]);
+		if (changeWeapon.currentGun == changeWeapon.gunPistol) {
+			source.PlayOneShot(soundGunPistol, 0.5F);
+		}
+		if (changeWeapon.currentGun == changeWeapon.gunAssault) {
+			source.PlayOneShot(soundGunAssault, 0.5F);
+		}
 
 		float gunRayDistance = 50f;
 		
@@ -141,31 +167,26 @@ public class ShootGun : MonoBehaviour {
 		// Name what for the raycast collides with (used to reference the target point)
 		RaycastHit hit;
 		
-		// The actual raycast
+		// The actual raycast for firing the "gun".
 		if(Physics.Raycast(ray, out hit, gunRayDistance, 1 << 9) || Physics.Raycast(ray, out hit, gunRayDistance, 1 << 8)) {
-			Debug.Log("Bullet Hit");
-			
+
 			EnemyHealth enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 			
 			// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Head".
 			if (hit.collider.gameObject.CompareTag("Enemy_Head")) {
-				Debug.Log ("Headshot!");
-				//hitPoint = hit.collider.gameObject;
+
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotHead();
 				lastShot.shotLastUpdate(player.gameObject.name);
 			}
 			// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Torso".
 			if (hit.collider.gameObject.CompareTag("Enemy_Torso")) {
-				Debug.Log ("Body-shot!");
-				//hitPoint = hit.collider.gameObject;
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotTorso();
 				lastShot.shotLastUpdate(player.gameObject.name);
 			}
 			// Checking if the raycast (bullet) collided with objects tagged with "Enemy_Limb".
 			if (hit.collider.gameObject.CompareTag("Enemy_Limb")) {
-				Debug.Log ("Limb-shot!");
 				enHit = hit.collider.gameObject.GetComponent<EnemyHealth>();
 				enHit.enemyShotLimb();
 				lastShot.shotLastUpdate(player.gameObject.name);
@@ -182,21 +203,17 @@ public class ShootGun : MonoBehaviour {
 
 	void gunReload()
 	{
-		Debug.Log("Reload function check");
-		if (Input.GetButtonDown("Reload"))
-		{
-			Debug.Log("Reloading");
-			if(changeWeapon.currentGun == changeWeapon.gunPistol) {
+		if (Input.GetButtonDown ("Reload")) {
+			if(changeWeapon.currentGun == changeWeapon.gunPistol && noAmmoPistol == false) {
 				aReload.SetActive(false);
 				// Incrementing the aClipPistolCurrent value by 1 so the current clip "should" progress one along? idk
 				aClipPistolCurrent += 1;
 			}
-			if(changeWeapon.currentGun == changeWeapon.gunAssault) {
+			if(changeWeapon.currentGun == changeWeapon.gunAssault && noAmmoAssault == false) {
 				aReload.SetActive(false);
 				// Incrementing the aClipPistolCurrent value by 1 so the current clip "should" progress one along? idk
 				aClipAssaultCurrent += 1;
 			}
-
 		}		
 	}
 

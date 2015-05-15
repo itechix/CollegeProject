@@ -14,7 +14,7 @@ public class AmmoPickup : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Make the object rotate by the specified angle / amount.
-		transform.Rotate (new Vector3 (10, 30, 45) * Time.deltaTime);
+		transform.Rotate (new Vector3 (0, 45, 0) * Time.deltaTime);
 
 	}
 
@@ -33,9 +33,9 @@ public class AmmoPickup : MonoBehaviour {
 		Debug.Log ("Picked up Ammo");
 
 		// Perform the replenish function in the ShootGun script, to avoid having to reference it all here which over-complicates things.
-		gunScript.ReplenishPistolAmmo ();
+		gunScript.ReplenishAmmo ();
 
-		// Debug to confirm it worked the reinitialisation worked and prints the updated value of each clip.
+		// Debug to confirm the reinitialisation worked and prints the updated value of each clip.
 		int temp_clipdebugvar = 0;
 		foreach (var clip in gunScript.aClipPistol) {
 			Debug.Log ("Clip[" + temp_clipdebugvar + "]: " + clip);	

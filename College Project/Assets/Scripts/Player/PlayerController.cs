@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate() {
 		
-		// Creating floats to hold the speed of the plater
+		// Creating floats to hold the speed of the player
 		float playerSpeedHorizontal = 4f * Input.GetAxis ("Horizontal");
 		float playerSpeedVertical = 6f * Input.GetAxis ("Vertical");
 

@@ -4,6 +4,8 @@ using System.Collections;
 public class allyRespawn : MonoBehaviour {
 
 	public float respawnTime = 1f;
+	public humanShoot humanShoot;
+
 	public GameObject ally;
 
 	public void respawnAlly() {
@@ -16,5 +18,6 @@ public class allyRespawn : MonoBehaviour {
 		ally.transform.position = this.transform.position;
 		Debug.Log (ally.name + " has respawned.");
 		ally.SetActive (true);
+		humanShoot.isShooting = false;
 	}
 }
