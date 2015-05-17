@@ -135,24 +135,17 @@ public class ScoreboardDisplay : MonoBehaviour {
 		if (lastShooter.shotLast == "Android Four") {
 			androidScores[3] += 1;
 			androidScore += 1;
-			//Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
-
 		}
 		if (lastShooter.shotLast == "Android Five") {
 			androidScores[4] += 1;
 			androidScore += 1;
-			//Debug.Log (lastShooter.shotLast + " " + androidScores[0]);
 		}
 	}
 
 	void scoreboardCheckScore() {
 		if (androidScore == targetScore || humanScore == targetScore) {
-			scoreGoalReached();
+			Debug.Log ("game over: score");
+			gameOver.gameOverEnd();
 		}
 	}
-
-	void scoreGoalReached() {
-		gameOver.gameOverEnd();
-	}
-
 }

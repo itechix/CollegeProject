@@ -11,6 +11,7 @@ public class Game : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Cursor.visible = true;
 			// Load the main menu once again.
 			Application.LoadLevel (0);
 		}

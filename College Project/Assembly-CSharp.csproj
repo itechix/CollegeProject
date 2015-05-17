@@ -66,7 +66,6 @@
      <Compile Include="Assets\Scripts\Gun\aimSights.cs" />
      <Compile Include="Assets\Scripts\Gun\changeWeapon.cs" />
      <Compile Include="Assets\Scripts\Menu\ClickToLoadAsync.cs" />
-     <Compile Include="Assets\Scripts\Menu\loadAdditive.cs" />
      <Compile Include="Assets\Scripts\Menu\loadOnClick.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\HealthPickup.cs" />

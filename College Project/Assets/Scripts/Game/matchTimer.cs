@@ -9,7 +9,7 @@ public class matchTimer : MonoBehaviour {
 	public Text timer;
 	
 	float seconds = 0;
-	float minutes = 10;
+	float minutes = 5;
 	
 	string secondsString;
 	string minutesString;
@@ -49,6 +49,7 @@ public class matchTimer : MonoBehaviour {
 
 	void timerCheck() {
 		if (minutes <= 0 && seconds <= 0) {
+			Debug.Log ("game over: time");
 			gameOver.gameOverEnd();
 		}
 	}
